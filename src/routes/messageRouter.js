@@ -5,5 +5,7 @@ const messageRouter = new Router();
 
 messageRouter.post("/", messageController.sendMessage);
 messageRouter.get("/", messageController.getMessages);
+messageRouter.get("/unread", messageController.getUnreadMessages);
+messageRouter.patch("/", messageController.updatedUnreadMessages);
 
 module.exports = messageRouter;

@@ -3,7 +3,7 @@ const SUCCESS_MESSAGES = {
 };
 
 const REJECT_MESSAGES = {
-  GET_MESSAGES: "Can't find messages without your id. Try to sign up again",
+  ID_ABSENCE: "Can't find messages without your id. Try to sign in again",
   SEND_MESSAGE_EMPTY_TEXT: "Can't send empty message",
   SEND_MESSAGE_WITHOUT_ID: "Can't send messages without your or recipient id",
   CREATE_ACCOUNT_WITHOUT_NAME: "Name is required",

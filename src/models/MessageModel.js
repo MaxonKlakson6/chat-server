@@ -19,6 +19,10 @@ const Message = database.define("Message", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  isRead: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
 });
 
 module.exports = Message;

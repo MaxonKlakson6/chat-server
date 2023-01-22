@@ -22,18 +22,38 @@ class MessageController {
       theme: body.theme,
     };
 
-    const newMessage = await MessageRepository.createMessage(message);
+    await MessageRepository.createMessage(message);
 
     res.status(200).json(SUCCESS_MESSAGES.SEND_MESSAGE);
   }
 
   async getMessages(req, res, next) {
     if (!req.query.id) {
-      return next(ApiError.badRequest(REJECT_MESSAGES.GET_MESSAGES));
+      return next(ApiError.badRequest(REJECT_MESSAGES.ID_ABSENCE));
     }
 
     const messages = await MessageRepository.getMessagesByUserId(req.query.id);
     res.status(200).json(messages);
+  }
+  async getUnreadMessages(req, res, next) {
+    if (!req.query.id) {
+      return next(ApiError.badRequest(REJECT_MESSAGES.ID_ABSENCE));
+    }
+
+    const unreadMessages = await MessageRepository.getUnreadMessages(
+      req.query.id
+    );
+
+    res.status(200).json(unreadMessages);
+  }
+  async updatedUnreadMessages(req, res, next) {
+    if (!req.query.id) {
+      return next(ApiError.badRequest(REJECT_MESSAGES.ID_ABSENCE));
+    }
+
+    await MessageRepository.updateUnreadMessages(req.query.id);
+
+    res.status(200).json("ok");
   }
 }
 

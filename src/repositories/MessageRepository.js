@@ -11,6 +11,23 @@ class MessageRepository {
 
     return newMessage.dataValues;
   }
+
+  async getUnreadMessages(id) {
+    const unreadMessages = await MessageModel.findAll({
+      where: { UserId: id, isRead: false },
+    });
+
+    return unreadMessages.map((message) => message.dataValues);
+  }
+
+  async updateUnreadMessages(userId) {
+    const updatedMessages = await MessageModel.update(
+      { isRead: true },
+      {
+        where: { UserId: userId, isRead: false },
+      }
+    );
+  }
 }
 
 module.exports = new MessageRepository();

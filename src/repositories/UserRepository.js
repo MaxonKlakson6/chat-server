@@ -16,9 +16,7 @@ class UserRepository {
     return UserModel.findOne({ where: { id } });
   }
   async findByName(name) {
-    const user = await UserModel.findOne({ where: name });
-
-    return user.dataValues;
+    return UserModel.findOne({ where: { name } });
   }
 }
 
