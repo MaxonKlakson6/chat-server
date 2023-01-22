@@ -28,7 +28,7 @@ class MessageController {
   }
 
   async getMessages(req, res, next) {
-    if (!req.query.id) {
+    if (!req.query.id || req.query.id === "undefined") {
       return next(ApiError.badRequest(REJECT_MESSAGES.ID_ABSENCE));
     }
 
@@ -47,7 +47,7 @@ class MessageController {
     res.status(200).json(unreadMessages);
   }
   async updatedUnreadMessages(req, res, next) {
-    if (!req.query.id) {
+    if (!req.query.id || req.query.id === "undefined") {
       return next(ApiError.badRequest(REJECT_MESSAGES.ID_ABSENCE));
     }
 
